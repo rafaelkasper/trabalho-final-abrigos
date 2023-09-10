@@ -30,11 +30,12 @@ function menu() {
 }
 
 const arrayAbrigos = [];
+
 function cadastrarAbrigo() {
   nome = prompt("Qual é o nome do abrigo?");
   endereco = prompt("Qual é o endereço?");
   telefone = prompt("Qual é o telefone?");
-  capacidade = Number(prompt("Qual é a capacidade?"));
+  capacidade = prompt("Qual é a capacidade?");
   cidade = prompt("Qual é a cidade?");
 
   const abrigo = {
@@ -59,16 +60,20 @@ function listarAbrigos() {
       const { nome, endereco, telefone, capacidade, cidade } = abrigo;
       const codigo = arrayAbrigos.indexOf(abrigo) + 1;
       listarAbrigos.push(
-        `${codigo.padStart(3, "0")}| ${nome.padEnd(18)}| ${endereco.padEnd(
-          9
-        )}| ${telefone.padEnd(8)}| ${capacidade.padEnd(8)}| ${cidade}`
+        `${codigo.toString().padStart(3, "0").padEnd(7)}| ${nome.padEnd(
+          18
+        )}| ${endereco.toString().padEnd(9)}| ${telefone.padEnd(
+          8
+        )}| ${capacidade.padEnd(8)}| ${cidade}`
       );
     }
 
-    let lista = `----------------------
-      LISTAGEM DE ABRIGOS:
-      ----------------------
-      CÓDIGO | NOME             | ENDEREÇO | TELEFONE | CAPACIDADE | CIDADE`;
+    let lista = `
+----------------------
+LISTAGEM DE ABRIGOS:
+----------------------
+CÓDIGO | NOME             | ENDEREÇO | TELEFONE | CAPACIDADE | CIDADE`;
+
     for (let abrigo of listarAbrigos) {
       lista += `\n${abrigo}`;
     }
@@ -92,20 +97,24 @@ function procurarAbrigo() {
     if (arrayAbrigos[i].cidade === cidade) {
       const codigo = i + 1;
       abrigosDisponiveis.push(
-        `${codigo.padStart(3, "0")}| ${arrayAbrigos[i].nome.padEnd(
-          18
-        )}| ${arrayAbrigos[i].endereco.padEnd(9)}| ${arrayAbrigos[
+        `${codigo.toString().padStart(3, "0").padEnd(8)}| ${arrayAbrigos[
           i
-        ].telefone.padEnd(8)}| ${arrayAbrigos[i].capacidade}`
+        ].nome.padEnd(18)}| ${arrayAbrigos[i].endereco.padEnd(
+          9
+        )}| ${arrayAbrigos[i].telefone.padEnd(8)}| ${
+          arrayAbrigos[i].capacidade
+        }`
       );
     }
   }
   if (abrigosDisponiveis.length > 0) {
-    let lista = ` 
-      ----------------------
-      LISTAGEM DE ABRIGOS
-      ----------------------
-      CÓDIGO | NOME             | ENDEREÇO | TELEFONE | CAPACIDADE`;
+    let lista = `
+----------------------
+LISTAGEM DE ABRIGOS
+----------------------
+CÓDIGO | NOME             | ENDEREÇO | TELEFONE | CAPACIDADE
+`;
+
     for (let abrigo of abrigosDisponiveis) {
       lista += `\n${abrigo}`;
     }
